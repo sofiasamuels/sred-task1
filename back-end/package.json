@@ -1,0 +1,22 @@
+{
+  "name": "sred",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@octokit/core": "^6.1.4",
+    "@octokit/plugin-paginate-rest": "^11.6.0",
+    "axios": "^1.8.4",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.4.7",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "mongoose": "^8.13.1",
+    "morgan": "~1.9.1",
+    "octokit": "^4.1.2"
+  }
+}
