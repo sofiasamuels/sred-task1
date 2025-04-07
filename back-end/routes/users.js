@@ -14,19 +14,23 @@ router.get("/", async function (req, res, next) {
   let repoResp =  await Promise.all(organizationResp.map(async org => 
     getRepos(req.headers.authorization, org.login,user.login),
    ));
+   getRepos(req.headers.authorization, 'moment',user.login);
    let memberResp = await Promise.all(organizationResp.map(async org => 
     getOrganizationMembers(req.headers.authorization, org.login,user.login )
    ));
+   getOrganizationMembers(req.headers.authorization, 'moment',user.login )
   let commitResp =  Promise.all(repoResp.flat(1).map(async repository => {
-     await Promise.all([
-      getCommits(req.headers.authorization, repository.name,repository.owner, user.login),
-      getPulls(req.headers.authorization, repository.name,repository.owner, user.login),
-      getIssues(req.headers.authorization, repository.name,repository.owner, user.login)])
+    await Promise.all([
+       getCommits(req.headers.authorization, repository.name,repository.owner.login, user.login),
+       getPulls(req.headers.authorization, repository.name,repository.owner.login, user.login),
+       getIssues(req.headers.authorization, repository.name,repository.owner.login, user.login)
+       ])
       
   })).then(async resp => {
-    let pullrequests = await getPulls(req.headers.authorization, 'moment','moment',user.login);
-    let issues = await getIssues(req.headers.authorization, 'moment','moment',user.login);
-    let dbUpdate = await markSyncComplete(user.login);
+    //let commits  = getCommits(req.headers.authorization, 'moment','moment', user.login);
+    //let pullrequests = await getPulls(req.headers.authorization, 'moment','moment',user.login);
+    //let issues = await getIssues(req.headers.authorization, 'moment','moment',user.login);
+    //let dbUpdate = await markSyncComplete(user.login);
     console.log('Syncing complete for '+ user.login+ JSON.stringify(dbUpdate));
   });
 

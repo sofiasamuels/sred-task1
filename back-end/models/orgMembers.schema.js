@@ -23,6 +23,9 @@ export const OrgMemberSchema = new mongoose.Schema({
   created_at: Date,
   updated_at: Date,
   username:String,
-  organization_name:String
+  organization_name:String,
+  repo:String,
+  created_at:Date,
+  updated_at:Date,
 });
 export const OrgMember = mongoose.model("orgmember", OrgMemberSchema);

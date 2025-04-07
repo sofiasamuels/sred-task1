@@ -12,6 +12,9 @@ const organizationSchema = new mongoose.Schema({
   members_url: String,
   public_members_url: String,
   avatar_url: String,
-  description: String
+  description: String,
+  repo:String,
+  created_at:Date,
+  updated_at:Date
 });
 export const Organization = mongoose.model("organization", organizationSchema);

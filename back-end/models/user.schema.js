@@ -31,6 +31,7 @@ export const userSchema = new mongoose.Schema({
   syncedDate:{
     type:Date, default:Date.now
   },
-  syncComplete: Boolean
+  syncComplete: Boolean,
+  date: Date
 });
 export const User = mongoose.model("github-integration", userSchema);
